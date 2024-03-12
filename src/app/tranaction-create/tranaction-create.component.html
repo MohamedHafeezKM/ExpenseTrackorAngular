@@ -1,0 +1,41 @@
+<div class="container" style="background-color: rgb(241, 165, 71);">
+
+    <form [formGroup]="transactionForm" action="" (ngSubmit)="createTransaction()">
+        <div class="mb-3">
+            <label for="">enter transaction title</label>
+            <input formControlName="title" type="text" placeholder="enter title" class="form-control">
+            <span class="form-text text-danger" *ngIf="title?.touched && title?.invalid" >Required*</span>
+        </div>
+        <div class="mb-3">
+            <label for="">Select Transaction Type</label>
+            <select formControlName="type" name="" id="" class="form-control form-select">
+                <option value="expenses">expenses</option>
+                <option value="income">income</option>
+            </select>
+            <span class="form-text text-danger" *ngIf="type?.touched && type?.invalid" >Required*</span>
+        </div> 
+        <div class="mb-3">
+            <label for="">Select Category </label>
+            <select formControlName="category" name="" id="" class="form-control form-select">
+               <option *ngFor="let cat of categories" value="{{cat}}">{{cat}}</option>
+            </select>
+            <span class="form-text text-danger" *ngIf="category?.touched && category?.invalid" >Required*</span>
+        </div>
+        <div class="mb-3">
+            <label for="">Enter amount</label>
+            <input formControlName="amount" type="text" placeholder="enter amount" class="form-control">
+            <span class="form-text text-danger" *ngIf="amount?.touched && amount?.invalid" >Required* and numbers only</span>
+        </div>
+        <div class="mb-3">
+            <label for="">Enter User</label>
+            <input formControlName="user" type="text" placeholder="enter user" class="form-control">
+            <span class="form-text text-danger" *ngIf="user?.touched && user?.invalid" >Required*</span>
+        </div>
+        <div class="mb-3">
+            <button class="btn btn-outline-sm" style="background-color: rgb(117, 206, 7);" type="submit" [disabled]="transactionForm.pristine" [hidden]="isEdit">Add</button>
+            <button class="btn btn-outline-sm" style="background-color: rgb(208, 251, 18);" type="submit" [disabled]="transactionForm.pristine" [hidden]="!isEdit">Edit</button>
+        </div>
+
+
+    </form>
+</div>
